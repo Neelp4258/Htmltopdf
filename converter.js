@@ -68,31 +68,13 @@ class EnhancedHTMLToPDFConverter {
         };
 
         console.log('🚀 Launching Puppeteer with Chrome...');
-        
-        // For production environments like Replit
-        if (process.env.NODE_ENV === 'production' || process.env.REPLIT_ENVIRONMENT) {
-            console.log('🏭 Production/Replit environment detected');
-            
-            if (process.env.PUPPETEER_EXECUTABLE_PATH) {
-                launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
-                console.log('🔍 Using executable path:', process.env.PUPPETEER_EXECUTABLE_PATH);
-            } else {
-                // Try to use system Chromium in Replit
-                const possiblePaths = [
-                    '/usr/bin/chromium',
-                    '/usr/bin/chromium-browser',
-                    '/nix/store/qa9cnw4v5xkxyip6mb9kxqfq1z4x2dx1-chromium-138.0.7204.100/bin/chromium'
-                ];
-                
-                for (const chromiumPath of possiblePaths) {
-                    if (fs.existsSync(chromiumPath)) {
-                        launchOptions.executablePath = chromiumPath;
-                        console.log('🔍 Using system Chromium at:', chromiumPath);
-                        break;
-                    }
-                }
-            }
+
+        // Use PUPPETEER_EXECUTABLE_PATH if explicitly set
+        if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+            launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+            console.log('🔍 Using PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH);
         }
+        // Otherwise, Puppeteer will automatically use its downloaded Chrome
         
         try {
             this.browser = await puppeteer.launch(launchOptions);
