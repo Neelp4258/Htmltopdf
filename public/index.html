@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to PDF Converter - Professional & Powerful</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span class="logo-text">HTML to PDF</span>
+            </div>
+            <p class="tagline">Professional Document Conversion</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Feature Cards -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Instant conversion with zero timeouts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Perfect Rendering</h3>
+                    <p>Pixel-perfect PDF generation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Ready</h3>
+                    <p>Works flawlessly on all devices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Your data never leaves the server</p>
+                </div>
+            </div>
+
+            <!-- Converter Section -->
+            <div class="converter-card">
+                <h2 class="section-title">Convert Your HTML</h2>
+
+                <!-- Input Method Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="file">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                            <polyline points="13 2 13 9 20 9"></polyline>
+                        </svg>
+                        Upload File
+                    </button>
+                    <button class="tab-btn" data-tab="url">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        From URL
+                    </button>
+                    <button class="tab-btn" data-tab="html">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Direct HTML
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- File Upload Tab -->
+                    <div class="tab-panel active" id="file-panel">
+                        <div class="upload-area" id="uploadArea">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <h3>Drop your HTML file here</h3>
+                            <p>or click to browse</p>
+                            <input type="file" id="fileInput" accept=".html,text/html" hidden>
+                        </div>
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-name"></div>
+                            <button class="btn-remove" id="removeFile">Remove</button>
+                        </div>
+                    </div>
+
+                    <!-- URL Tab -->
+                    <div class="tab-panel" id="url-panel">
+                        <div class="input-group">
+                            <input type="url" id="urlInput" class="input-field" placeholder="https://example.com">
+                            <label class="input-label">Enter Website URL</label>
+                        </div>
+                    </div>
+
+                    <!-- Direct HTML Tab -->
+                    <div class="tab-panel" id="html-panel">
+                        <div class="input-group">
+                            <textarea id="htmlInput" class="textarea-field" rows="8" placeholder="<html>&#10;  <body>&#10;    <h1>Your HTML here</h1>&#10;  </body>&#10;</html>"></textarea>
+                            <label class="input-label">Paste Your HTML Code</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Options Section -->
+                <div class="options-section">
+                    <button class="options-toggle" id="optionsToggle">
+                        <svg class="options-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m-8.66-8.66 5.66 5.66m5.66 5.66 5.66-5.66M1 12h6m6 0h6M3.34 19.66l5.66-5.66m5.66-5.66 5.66-5.66"></path>
+                        </svg>
+                        <span>Advanced Options</span>
+                        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="options-panel" id="optionsPanel">
+                        <div class="options-grid">
+                            <!-- Page Format -->
+                            <div class="option-group">
+                                <label class="option-label">Page Format</label>
+                                <select id="format" class="select-field">
+                                    <option value="A4">A4 (210 × 297 mm)</option>
+                                    <option value="A3">A3 (297 × 420 mm)</option>
+                                    <option value="Letter">Letter (8.5 × 11 in)</option>
+                                    <option value="Legal">Legal (8.5 × 14 in)</option>
+                                    <option value="PPT_4_3">PPT 4:3 (10 × 7.5 in)</option>
+                                    <option value="PPT_16_9">PPT 16:9 (13.33 × 7.5 in)</option>
+                                    <option value="PPT_16_10">PPT 16:10 (10 × 6.25 in)</option>
+                                </select>
+                            </div>
+
+                            <!-- Orientation -->
+                            <div class="option-group">
+                                <label class="option-label">Orientation</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="orientation" value="portrait" checked>
+                                        <span class="radio-custom"></span>
+                                        Portrait
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="orientation" value="landscape">
+                                        <span class="radio-custom"></span>
+                                        Landscape
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Scale -->
+                            <div class="option-group">
+                                <label class="option-label">Scale</label>
+                                <div class="range-group">
+                                    <input type="range" id="scale" class="range-field" min="0.5" max="2" step="0.1" value="1">
+                                    <span class="range-value" id="scaleValue">1.0</span>
+                                </div>
+                            </div>
+
+                            <!-- Margins -->
+                            <div class="option-group full-width">
+                                <label class="option-label">Margins</label>
+                                <div class="margins-grid">
+                                    <input type="text" id="marginTop" class="margin-input" placeholder="Top" value="12mm">
+                                    <input type="text" id="marginRight" class="margin-input" placeholder="Right" value="10mm">
+                                    <input type="text" id="marginBottom" class="margin-input" placeholder="Bottom" value="14mm">
+                                    <input type="text" id="marginLeft" class="margin-input" placeholder="Left" value="10mm">
+                                </div>
+                                <p class="margin-note">PPT formats automatically use 0mm margins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Convert Button -->
+                <button class="btn-convert" id="convertBtn">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Convert to PDF</span>
+                </button>
+
+                <!-- Progress -->
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p class="progress-text">Converting your document...</p>
+                </div>
+
+                <!-- Status Message -->
+                <div class="status-message" id="statusMessage" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Powered by Puppeteer | Zero Errors | Zero Timeouts | Perfect Rendering</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
