@@ -1,7 +1,11 @@
 [build]
-  command = "npm install"
+  command = "npm install --legacy-peer-deps"
   functions = "netlify/functions"
   publish = "public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [[redirects]]
   from = "/api/*"
@@ -14,5 +18,9 @@
   status = 200
 
 [functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium", "puppeteer-core"]
+
+[functions.convert]
   node_bundler = "esbuild"
   external_node_modules = ["@sparticuz/chromium"]
