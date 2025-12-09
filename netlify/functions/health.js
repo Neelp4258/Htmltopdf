@@ -1,0 +1,12 @@
+exports.handler = async (event) => {
+    return {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            status: 'ok',
+            message: 'HTML to PDF Converter API is running on Netlify!'
+        })
+    };
+};
