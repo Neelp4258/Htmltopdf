@@ -20,7 +20,7 @@ Professional, powerful HTML to PDF converter with a beautiful web interface. Zer
   - Custom margins and scaling
   - Hindi font support
 - **Zero Issues** - No timeouts, no rendering errors, just perfect PDFs
-- **Netlify Ready** - Pre-configured for easy deployment
+- **Production Ready** - Deploy to Render, Railway, Heroku, or any Node.js host
 
 ## Quick Start
 
@@ -49,71 +49,32 @@ The powerful CLI is still available:
 npm run cli
 ```
 
-## Deployment to Netlify
+## Deployment (⚠️ NOT for Netlify!)
 
-### Option 1: Deploy with Netlify CLI
+**Important**: This app uses Puppeteer (headless Chrome) and needs a **full server environment**, not serverless functions.
 
-1. **Install Netlify CLI**
-   ```bash
-   npm install -g netlify-cli
-   ```
+### ✅ Recommended: Render.com (Easiest!)
 
-2. **Login to Netlify**
-   ```bash
-   netlify login
-   ```
+**Best for Puppeteer - zero configuration needed!**
 
-3. **Deploy**
-   ```bash
-   netlify deploy --prod
-   ```
+1. Go to [render.com](https://render.com) and sign in with GitHub
+2. Click **"New Web Service"**
+3. Connect your repository
+4. Configure:
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+5. Click **"Create Web Service"**
 
-### Option 2: Deploy via GitHub
+**Done!** Live in ~5 minutes. Render automatically installs Chrome.
 
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push origin main
-   ```
+### Other Great Options
 
-2. **Connect to Netlify**
-   - Go to [netlify.com](https://netlify.com)
-   - Click "New site from Git"
-   - Choose your repository
-   - Build settings are auto-detected from `netlify.toml`
-   - Click "Deploy site"
+- **Railway.app** - Super fast, auto-configures everything
+- **Heroku** - Classic choice (needs Puppeteer buildpack)
+- **DigitalOcean App Platform** - Full control
+- **Fly.io** - Modern global deployment
 
-### Option 3: Deploy via Drag & Drop
-
-1. **Build Your Site**
-   ```bash
-   npm install
-   ```
-
-2. **Drag & Drop**
-   - Go to [netlify.com/drop](https://app.netlify.com/drop)
-   - Drag the entire project folder
-   - Your site is live!
-
-## Important Notes for Netlify
-
-Puppeteer requires special configuration on serverless platforms. For Netlify Functions, you may need to:
-
-1. Use `chrome-aws-lambda` instead of full Puppeteer
-2. Add this to your package.json dependencies:
-   ```json
-   "chrome-aws-lambda": "^10.1.0",
-   "@sparticuz/chromium": "^119.0.0"
-   ```
-
-3. Update the converter to use chrome-aws-lambda in production
-
-For the best experience on serverless platforms, consider:
-- **Render.com** - Native support for Puppeteer
-- **Railway.app** - Great for Node.js apps with Puppeteer
-- **Heroku** - Requires buildpack but works well
-- **DigitalOcean App Platform** - Full Docker support
+**📖 Full deployment guides: [DEPLOYMENT.md](DEPLOYMENT.md)**
 
 ## API Endpoints
 
