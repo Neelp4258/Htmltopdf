@@ -160,16 +160,26 @@ async function handleConvert() {
 
         // Make API call based on current tab
         let response;
+        let requestBody = { ...options };
 
         if (currentTab === 'file') {
-            response = await convertFile(selectedFile, options);
+            const htmlContent = await selectedFile.text();
+            requestBody.htmlContent = htmlContent;
         } else if (currentTab === 'url') {
             const url = document.getElementById('urlInput').value.trim();
-            response = await convertURL(url, options);
+            requestBody.url = url;
         } else if (currentTab === 'html') {
             const html = document.getElementById('htmlInput').value.trim();
-            response = await convertHTML(html, options);
+            requestBody.htmlContent = html;
         }
+
+        response = await fetch('/api/convert', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
 
         // Download the PDF
         if (response.ok) {
@@ -214,46 +224,7 @@ function getOptions() {
     };
 }
 
-async function convertFile(file, options) {
-    const formData = new FormData();
-    formData.append('htmlFile', file);
-
-    // Append options
-    Object.keys(options).forEach(key => {
-        formData.append(key, options[key]);
-    });
-
-    return await fetch('/api/convert/file', {
-        method: 'POST',
-        body: formData
-    });
-}
-
-async function convertURL(url, options) {
-    return await fetch('/api/convert/url', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            url: url,
-            ...options
-        })
-    });
-}
-
-async function convertHTML(htmlContent, options) {
-    return await fetch('/api/convert/html', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            htmlContent: htmlContent,
-            ...options
-        })
-    });
-}
+// Simplified for Netlify Functions - all conversion handled by single endpoint
 
 function showStatus(type, message) {
     statusMessage.textContent = message;
