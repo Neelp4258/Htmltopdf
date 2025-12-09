@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Ensure directories exist
 fs.ensureDirSync(path.join(__dirname, 'uploads'));
@@ -55,6 +55,11 @@ async function initializeConverter() {
 }
 
 // Routes
+
+// Root route - serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -197,6 +202,11 @@ function parseOptions(body) {
 
     return options;
 }
+
+// Catch-all route - serve index.html for any non-API routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Initialize converter on startup
 initializeConverter().then(() => {
